@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>06-0504-0010 - Fundamentals of Web Design</title>
+<html lang="en">
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet"type="text/css">
+</head>
+<body>
+<h1></h1>
+    <label for="firstChoice">What is your favorite TV show?</label>
+    <br></br>
+    <select name="firstChoice">
+        <option value="a">Whose Line is It Anyway?</option>
+        <option value="b">Family Feud</option>
+        <option value="c">The Simpsons</option>
+        <option value="d">It's Always Sunny</option>
+    </select>
+    <br></br>
+    <button>Submit Your Answer</button>   
+<h1 class="heading">Northview Class Olympics Sign-Up Sheet</h1>
+
+<p>A BPA chapter aligned with the goals and mission of Business Professional of America is concerned with service. Business Professionals of America recommends chapters become involved in one or more of the BPA cares programs it offers. Participation in this program means that members are engaging in worthwhile projects while having the opportunity to recieve recognition from the national organization.</p>
+<p><strong>Chapter Service Learning Awards</strong> The purpose of the Service Learning Awards Program is to encourage individuals and chapters to be involved in their community through service learning. There are four awards your chapter can work towards each year. They are:</p>
+<ul><a href="#3v3">||3 on 3 Basketball || </a>
+
+<script>
+    axios.get('/events')
+    .then(function(response){
+        console.log(response.data.length);
+         $(document).ready(function() {
+         
+        for(let i = 0; i < response.data.length; i++) {
+         
+            let $table = $("<table></table>")
+            .append($("<tr></tr>")
+            .append($("<td></td>").text(response.data[i].Event))
+                )
+            .append($("<tr></tr>")
+            .append($("<td></td>").text(response.data[i].Description))
+                   );
+            
+
+            $("body").append($table);
+            
+        }
+    })
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+   
+   
+    </script>
+<p><strong id="3v3">Community Service Award</strong> The purpose is to encourage local chapters to become actively involved in the community betterment, school improvement and election-year activities; to encourage local chapters to develop ways of involving their members in these kinds of activities; and to recognize chapters for their involvement in engaged citizenry. All applicants must be in good standing with Business Professionals of America. This ward is open to members in the Middle Level, Post-Secondary, and Secondary Divisions who have completed at minimum 100 service hours or contributed at minimum $500.00 to a service organization.</p>
